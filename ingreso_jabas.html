@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+<title>Despacho de Jabas</title>
+
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/despacho.css">
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+<h2>CARRERA</h2>
+<p>Procesadora Laran</p>
+</div>
+
+<nav>
+<a href="index.html">Inicio</a>
+<a href="#">Salida de Jabas</a>
+<a href="#">Despacho</a>
+<a href="#">Grafico</a>
+</nav>
+
+</header>
+
+
+<section class="hero">
+
+<div class="overlay">
+
+<h1>DESPACHO DE JABAS</h1>
+<p>Registro de Despacho de Jabas</p>
+
+</div>
+
+</section>
+
+
+<section class="contenedor-despacho">
+
+
+
+<div class="filtros">
+
+<button class="btn-principal">FILTRO DE FECHA</button>
+
+<button class="btn-secundario">FILTRO DE PROVEEDOR</button>
+
+<button class="btn-secundario">FILTRAR POR FUNDO</button>
+
+<button class="btn-secundario">FILTRO POR GUIA</button>
+
+</div>
+
+<div class="area-tabla">
+
+<div class="tabla">
+
+<table>
+
+<thead>
+
+<tr>
+<th>FECHA</th>
+<th>PLACA</th>
+<th>CHOFER</th>
+<th>TIPO DE JABA</th>
+<th>PROVEEDOR</th>
+<th>FUNDO</th>
+<th>GUIA</th>
+<th>CANTIDAD</th>
+<th>OBSERVACION</th>
+</tr>
+
+</thead>
+
+<tbody id="tablaDatos">
+<tr>
+<td colspan="9">Cargando datos...</td>
+</tr>
+</tbody>
+
+</table>
+
+</div>
+
+<div class="panel-imagen">
+
+IMAGEN EN MOVIMIENTO
+
+</div>
+
+</div>
+
+</section>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+<script src="js/despacho.js"></script>
+
+</body>
+</html>
