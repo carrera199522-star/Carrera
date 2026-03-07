@@ -80,6 +80,10 @@ font-weight:bold;
 .hero{
 
 height:40vh;
+background-size:cover;
+background-position:center;
+background-repeat:no-repeat;
+transition:background-position 8s linear;
 
 }
 .filtros{
@@ -129,5 +133,6 @@ transition:0.3s;
 
 background:#333;
 color:white;
+
 
 }
