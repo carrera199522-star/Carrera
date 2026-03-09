@@ -1,115 +1,299 @@
+/* =====================================================
+   CONFIGURACION GENERAL DE LA PAGINA
+===================================================== */
 
 body{
-
+font-family:'Poppins', sans-serif;
 margin:0;
-font-family:Arial;
-background:#071427;
-
+background:#f5f7fa;
+overflow-x:hidden;
 }
 
 
-/* NAVBAR */
 
-header{
+/* =====================================================
+   HEADER PRINCIPAL (LOGO + MENU)
+===================================================== */
 
+.main-header{
+
+background:white;
 display:flex;
 justify-content:space-between;
 align-items:center;
-background:white;
-padding:15px 60px;
-box-shadow:0 5px 15px rgba(0,0,0,0.1);
 
+padding:4px 40px;   /* aumenta el espacio */
+
+box-shadow:0 2px 10px rgba(0,0,0,0.1);
+
+position:fixed;
+width:100%;
+top:0;
+z-index:1000;
+
+}
+
+
+
+/* =====================================================
+   LOGO (IMAGEN + TEXTO)
+===================================================== */
+
+.logo{
+display:flex;
+align-items:center;
+gap:10px;
+ 	
+}
+
+.logo img{
+width:60px;
 }
 
 .logo h2{
-
 margin:0;
-color:#1f2e3d;
-
+color:#1f6f8b;
+font-size:26px;
 }
 
 .logo p{
-
 margin:0;
-font-size:13px;
-color:#777;
-
+color:#555;
+font-size:12px;
 }
 
 
-```css
-nav{
 
+/* =====================================================
+   MENU PRINCIPAL
+===================================================== */
+
+.menu{
 display:flex;
+gap:30px;
 align-items:center;
-
 }
 
-nav a{
+.menu{
+display:flex;
+gap:30px;
+align-items:center;
+margin-right:120px;   /* separa del borde derecho */
+}
 
-padding:20px 25px;
+/* efecto hover botones menu */
+
+.menu a:hover{
+
+background:#9BC7CE;
+color:#2e7d32;
+
+}
+.menu a{
+
 text-decoration:none;
-color:#2c3e50;
-font-weight:bold;
+color:#333;
+font-weight:500;
+font-size:16px;
+
+padding:12px 28px;   /* mismo tamaño que MP */
+
+border-radius:8px;
 transition:0.3s;
 
 }
 
-/* cuando pasas el mouse */
 
-nav a:hover{
 
-background:#2d6cdf;
+/* =====================================================
+   DROPDOWN (MENU MP)
+===================================================== */
+
+/* BOTON MP */
+
+.dropdown > a{
+
+text-decoration:none;
+color:#2e7d32;
+font-weight:500;
+font-size:16px;
+
+padding:12px 28px;   /* ← más grande */
+
+border-radius:10px;
+transition:0.3s;
+
+}
+
+.dropdown{
+position:relative;
+}
+
+.dropdown-content{
+
+display:none;
+position:absolute;
+
+top:35px;
+left:0;
+
+background:white;
+
+border-radius:6px;
+box-shadow:0 5px 15px rgba(0,0,0,0.2);
+
+}
+
+.dropdown-content a{
+
+display:block;
+padding:10px 20px;
+
+color:#2e7d32;
+
+}
+
+.dropdown-content a:hover{
+
+background:#2e7d32;
 color:white;
 
 }
 
-/* cuando está seleccionado */
+.dropdown:hover .dropdown-content{
 
-nav a.activo{
+display:block;
 
-background:#2d6cdf;
-color:white;
+}
+.dropdown > a:hover{
+
+background:#9BC7CE; 
+color:#2e7d32;
 
 }
 
+.dropdown-content{
 
+display:none;
+position:absolute;
 
+top:35px;
+left:0;
 
-/* HERO */
+background:white;
+
+border-radius:6px;
+box-shadow:0 5px 15px rgba(0,0,0,0.2);
+
+z-index:2000;   /* importante */
+
+}
+
+/* =====================================================
+   HERO (AREA DE IMAGEN GRANDE)
+===================================================== */
 
 .hero{
+position:relative;
+height:360px;
+overflow:hidden;
+}
 
-height:90vh;
-background-size:110%;
-background-position:right center;
+.slider{
+width:100%;
+height:360px;
+overflow:hidden;
+}
+
+.slider ul{
 display:flex;
-align-items:center;
-justify-content:center;
-transition:background-image 1s ease;
+padding:0;
+margin:0;
+width:400%;
+height:360px;
+animation:slider 30s infinite;
+}
 
-animation:movimiento 8s linear;
+.slider img{
+width:100%;
+height:360px;
+object-fit:cover;
+}
+
+/* =====================================================
+   SLIDER DE IMAGENES
+===================================================== */
+
+.slider{
+
+position:absolute;
+top:0;
+left:0;
+
+width:100%;
+height:100%;
+
+}
+
+.slider li{
+
+width:100%;
+list-style:none;
+
+}
+.slider img{
+
+width:100%;
+height:100%;
+object-fit:cover;
 
 }
 
 
 
-/* OVERLAY */
+/* =====================================================
+   ANIMACION DEL SLIDER
+===================================================== */
+
+@keyframes slider{
+
+0%{margin-left:0;}
+20%{margin-left:0;}
+
+25%{margin-left:-100%;}
+45%{margin-left:-100%;}
+
+50%{margin-left:-200%;}
+70%{margin-left:-200%;}
+
+75%{margin-left:-300%;}
+100%{margin-left:-300%;}
+
+}
+
+/* =====================================================
+   CUADRO OSCURO SOBRE LA IMAGEN
+===================================================== */
 
 .overlay{
 
-background:rgba(0,0,0,0.5);
-padding:60px;
-text-align:center;
-color:white;
-border-radius:10px;
-animation:fade 1.5s;
+background:none;
+
+padding:80px 60px;
+
+max-width:1200px;
+margin:auto;
 
 }
 
+/* =====================================================
+   TITULO PRINCIPAL
+===================================================== */
+
 .overlay h1{
 
-font-size:50px;
+font-size:60px;
+color:#222;
 margin-bottom:20px;
 
 }
@@ -117,78 +301,851 @@ margin-bottom:20px;
 .overlay p{
 
 font-size:18px;
+color:#555;
+
+max-width:600px;
+
+margin-bottom:25px;
 
 }
 
-button{
+/* =====================================================
+   TEXTO DESCRIPTIVO
+===================================================== */
 
-margin-top:20px;
-padding:15px 40px;
-border:none;
+.overlay p{
+
+font-size:18px;
+max-width:600px;
+margin:auto;
+margin-bottom:25px;
+
+color:#555;   /* gris */
+
+}
+
+
+
+/* =====================================================
+   CONTENEDOR DE BOTONES
+===================================================== */
+
+.botones{
+margin-top:30px;
+}
+
+
+
+/* =====================================================
+   BOTON PRINCIPAL
+===================================================== */
+
+.btn-principal{
+
 background:#00b894;
+
 color:white;
-font-size:16px;
-cursor:pointer;
-border-radius:8px;
+
+padding:15px 40px;
+
+border-radius:30px;
+
+text-decoration:none;
+
+margin-right:15px;
+
+font-weight:600;
+
 transition:0.3s;
 
 }
 
-button:hover{
+.btn-principal:hover{
 
 background:#00e6a8;
+
+transform:translateY(-3px);
+
+}
+
+
+
+/* =====================================================
+   BOTON SECUNDARIO
+===================================================== */
+
+.btn-secundario{
+
+border:2px solid white;
+
+color:white;
+
+padding:15px 40px;
+
+border-radius:30px;
+
+text-decoration:none;
+
+font-weight:600;
+
+transition:0.3s;
+
+
+
+
+
+}
+
+.btn-secundario:hover{
+
+background:white;
+color:black;
+
+}
+
+
+.anio{
+color:#2f6f7e;
+}
+
+
+.presentacion{
+
+display:flex;
+align-items:center;
+justify-content:space-between;
+
+max-width:1200px;
+margin:60px auto;
+
+gap:60px;
+
+}
+
+.texto{
+flex:1;
+}
+
+.texto h1{
+font-size:70px;
+margin:0;
+}
+
+.texto span{
+color:#2f6f7e;
+}
+
+.texto p{
+margin-top:20px;
+color:#555;
+max-width:450px;
+}
+
+.imagen img{
+
+width:450px;
+border-radius:20px;
+
+}
+
+
+
+
+/* HERO PRINCIPAL */
+
+.hero-sistema{
+
+background:#f5f7fa;
+padding:80px 60px;
+
+}
+
+.hero-contenido{
+
+display:flex;
+align-items:center;
+justify-content:space-between;
+
+max-width:1200px;
+margin:auto;
+
+gap:60px;
+
+}
+
+.hero-texto h1{
+
+font-size:55px;
+margin:0;
+
+}
+
+.hero-texto h2{
+
+font-size:60px;
+color:#2f6f7e;
+margin:10px 0;
+
+}
+
+.hero-texto p{
+
+color:#666;
+max-width:420px;
+
+}
+
+.hero-botones{
+
+margin-top:25px;
+
+display:flex;
+gap:15px;
+
+}
+
+
+/* BOTONES */
+
+.btn-primary{
+
+background:#00b894;
+color:white;
+
+padding:12px 28px;
+
+border-radius:30px;
+
+text-decoration:none;
+font-weight:600;
+
+}
+
+.btn-sec{
+
+border:2px solid #00b894;
+
+color:#00b894;
+
+padding:12px 28px;
+
+border-radius:30px;
+
+text-decoration:none;
+font-weight:600;
+
+}
+
+
+/* IMAGEN */
+
+.hero-img img{
+
+width:580px;
+border-radius:20px;
+
+box-shadow:0 15px 40px rgba(0,0,0,0.2);
+
+}
+
+
+/* PANEL OPCIONES */
+
+.panel-opciones{
+
+margin-top:60px;
+
+display:flex;
+justify-content:center;
+
+gap:30px;
+
+}
+
+
+.card-opcion{
+
+background:white;
+
+padding:30px;
+
+border-radius:12px;
+
+box-shadow:0 10px 25px rgba(0,0,0,0.1);
+
+width:250px;
+
+text-align:center;
+
+transition:0.3s;
+
+}
+
+.card-opcion:hover{
+
+transform:translateY(-5px);
+
+}
+
+.card-opcion h3{
+
+color:#1f6f8b;
+
+}
+
+.card-opcion p{
+
+color:#666;
+
+}
+
+.card-opcion a{
+
+display:inline-block;
+
+margin-top:10px;
+
+text-decoration:none;
+
+color:white;
+
+background:#1f6f8b;
+
+padding:10px 20px;
+
+border-radius:6px;
+
+}
+
+.animar{
+
+opacity:0;
+transform:translateY(40px);
+transition:0.8s;
+
+}
+
+.animar.mostrar{
+
+opacity:1;
+transform:translateY(0);
+
+}
+
+.estadisticas{
+
+display:flex;
+justify-content:center;
+gap:60px;
+
+margin-top:40px;
+
+}
+
+.stat{
+
+text-align:center;
+
+}
+
+.stat h2{
+
+font-size:40px;
+color:#1f6f8b;
+
+}
+
+.stat p{
+
+color:#666;
+
+}
+
+
+.icono-card{
+
+width:100%;
+height:160px;
+
+object-fit:cover;
+
+border-radius:10px 10px 0 0;
+
+margin-bottom:15px;
+transition:0.3s;
+
+}
+
+
+.card-opcion:hover .icono-card{
+
 transform:scale(1.05);
 
 }
 
 
-/* ANIMACION */
+/* DASHBOARD DE FUNDOS */
 
-@keyframes fade{
+.fundo-dashboard{
 
-from{
+display:flex;
 
-opacity:0;
-transform:translateY(30px);
+justify-content:center;   /* centra todo el bloque */
 
-}
+width:100%;
 
-to{
-
-opacity:1;
+margin-top:60px;
 
 }
 
-}
-.animacion{
+/* BLOQUE */
 
-animation:slide 1s ease;
+.fundo-bloque{
 
-}
+display:flex;
 
-@keyframes slide{
+align-items:center;
 
-from{
-transform:translateX(80px);
-opacity:0;
-}
+justify-content:center;
 
-to{
-transform:translateX(0);
-opacity:1;
-}
+gap:30px;
+
+max-width:1100px;   /* controla el ancho total */
+
+width:100%;
 
 }
 
-@keyframes movimiento{
+/* IMAGEN */
 
-0%{
-background-position:right center;
-}
+.fundo-img{
 
-100%{
-background-position:left center;
-}
+width:260px;  /* un poco más grande */
+
+position:relative;
 
 }
+
+.fundo-info{
+
+display:flex;
+
+gap:20px;
+
+align-items:center;
+
+}
+
+.fundo-img img{
+
+width:260px;
+
+height:340px;
+
+object-fit:cover;
+
+border-radius:18px;
+
+}
+
+
+.fundo-img h3{
+
+position:absolute;
+
+bottom:15px;
+
+left:20px;
+
+color:white;
+
+font-size:26px;
+
+text-shadow:0 3px 10px rgba(0,0,0,0.7);
+
+}
+
+/* INFO */
+
+.fundo-info{
+
+flex:1;
+
+}
+
+/* TARJETAS */
+
+.cards-fundo{
+
+display:flex;
+
+gap:25px;
+
+margin-bottom:40px;
+
+}
+
+.card-fundo{
+
+background:white;
+
+padding:18px;
+
+border-radius:16px;
+
+box-shadow:0 10px 25px rgba(0,0,0,0.08);
+
+text-align:center;
+
+width:190px;   /* antes 260px */
+
+min-height:250px;
+
+display:flex;
+
+flex-direction:column;
+
+align-items:center;
+
+justify-content:space-between;
+
+}
+
+
+.fundo-info{
+
+display:flex;
+
+gap:10px;   /* espacio pequeño entre tarjetas */
+
+align-items:center;
+
+}
+
+.card-fundo h2{
+
+color:#1f6f8b;
+
+font-size:36px;
+
+margin-bottom:5px;
+
+}
+
+.card-fundo p{
+
+color:#666;
+
+font-size:14px;
+
+}
+
+/* BOTONES */
+
+.acciones-fundo{
+
+display:flex;
+
+gap:15px;
+
+}
+
+.btn-fundo{
+
+background:#1f6f8b;
+
+color:white;
+
+padding:12px 20px;
+
+border-radius:8px;
+
+text-decoration:none;
+
+font-weight:600;
+
+transition:0.3s;
+
+}
+
+.btn-fundo:hover{
+
+background:#2f7f8f;
+
+transform:translateY(-2px);
+
+}
+
+/* TARJETAS PEQUEÑAS */
+
+.cards-mini{
+
+display:flex;
+
+gap:25px;
+
+margin-bottom:35px;
+
+}
+
+.card-mini{
+
+background:white;
+
+padding:25px;
+
+border-radius:14px;
+
+box-shadow:0 10px 25px rgba(0,0,0,0.08);
+
+text-align:center;
+
+width:150px;
+
+transition:0.3s;
+
+}
+
+.card-mini:hover{
+
+transform:translateY(-5px);
+
+box-shadow:0 15px 35px rgba(0,0,0,0.15);
+
+}
+
+.card-mini h2{
+
+color:#1f6f8b;
+
+font-size:34px;
+
+margin-bottom:5px;
+
+}
+
+.card-mini p{
+
+color:#666;
+
+font-size:13px;
+
+}
+
+
+
+
+.btn-fundo{
+
+background:#1f6f8b;
+
+color:white;
+
+padding:12px 20px;
+
+border-radius:8px;
+
+text-decoration:none;
+
+font-weight:600;
+
+margin-right:10px;
+
+transition:0.3s;
+
+}
+
+.btn-fundo:hover{
+
+background:#2f7f8f;
+
+transform:translateY(-2px);
+
+}
+
+
+.cards-fundo{
+
+display:flex;
+gap:30px;
+margin-top:40px;
+
+}
+
+.card-fundo{
+
+background:white;
+
+border-radius:18px;
+
+padding:25px;
+
+width:260px;
+
+text-align:center;
+
+box-shadow:0 10px 25px rgba(0,0,0,0.08);
+
+transition:0.3s;
+
+}
+
+.card-fundo:hover{
+
+transform:translateY(-5px);
+
+box-shadow:0 15px 35px rgba(0,0,0,0.15);
+
+}
+
+.img-card{
+
+width:120px;   /* tamaño pequeño */
+
+height:120px;
+
+object-fit:cover;
+
+border-radius:14px;
+
+margin-bottom:10px;
+
+}
+
+.card-fundo h3{
+
+color:#1f6f8b;
+
+margin-bottom:5px;
+
+}
+
+.card-fundo h2{
+
+font-size:36px;
+
+color:#2f7f8f;
+
+margin-bottom:15px;
+
+}
+
+.btn-card{
+
+background:#2f7f8f;
+
+color:white;
+
+padding:10px 18px;
+
+border-radius:8px;
+
+text-decoration:none;
+
+font-weight:600;
+
+font-size:13px;   /* letra más pequeña */
+
+display:inline-block;
+
+transition:0.3s;
+
+}
+.btn-card:hover{
+
+background:#2f7f8f;
+
+}
+
+
+.cards-fundo{
+
+display:flex;
+
+gap:30px;
+
+justify-content:center;
+
+flex-wrap:wrap;
+
+margin-top:40px;
+
+}
+
+
+
+.cards-fundo{
+
+display:flex;
+
+gap:30px;
+
+flex-wrap:wrap;
+
+margin-top:30px;
+
+}
+
+.card-fundo{
+
+width:240px;
+
+background:white;
+
+padding:25px;
+
+border-radius:18px;
+
+text-align:center;
+
+box-shadow:0 10px 25px rgba(0,0,0,0.08);
+
+transition:0.3s;
+
+}
+
+.card-fundo:hover{
+
+transform:translateY(-5px);
+
+box-shadow:0 15px 35px rgba(0,0,0,0.15);
+
+}
+.espacio-btn{
+height:40px;
+margin-top:10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
