@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+<title>Dashboard de Jabas</title>
+
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/grafico.css">
+
+<!-- Librería de gráficos -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+<h2>CARRERA</h2>
+<p>Procesadora Laran</p>
+</div>
+
+<nav>
+
+<a href="index.html">Inicio</a>
+<a href="ingreso_jabas.html">Ingreso de Jabas</a>
+<a href="despacho.html">Despacho</a>
+<a href="grafico.html">Grafico</a>
+
+</nav>
+</header>
+<section class="hero">
+
+<div class="slider">
+<ul>
+<li><img src="img/img4.jpg"></li>
+<li><img src="img/img5.jpg"></li>
+<li><img src="img/img6.jpg"></li>
+<li><img src="img/img4.jpg"></li>
+</ul>
+</div>
+
+<div class="overlay">
+<h1>GRAFICOS DE DESPACHO</h1>
+<p>Analisis de salida de jabas</p>
+</div>
+
+</section>
+
+
+<section class="dashboard">
+
+<div class="titulo-dashboard">
+
+<h1>REGISTRO DE SALIDA DE JABAS</h1>
+
+<div class="card-total">
+<h2 id="totalJabas">0</h2>
+<p>Total de jabas</p>
+</div>
+
+</div>
+
+
+<div class="grid-graficos">
+
+
+<div class="grafico">
+
+<h3>Jabas por proveedor</h3>
+
+<canvas id="graficoProveedor"></canvas>
+
+</div>
+
+
+<div class="grafico">
+
+<h3>Tipo de envase</h3>
+
+<canvas id="graficoEnvase"></canvas>
+
+</div>
+
+
+<div class="grafico">
+
+<h3>Salida semanal</h3>
+
+<canvas id="graficoSemanal"></canvas>
+
+</div>
+
+
+<div class="grafico">
+
+<h3>Jabas por fundo</h3>
+
+<canvas id="graficoFundo"></canvas>
+
+</div>
+
+
+</div>
+
+</section>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
+<!-- JS del dashboard -->
+<script src="js/grafico.js"></script>
+
+</body>
+</html>
