@@ -6,58 +6,115 @@
 <meta charset="UTF-8">
 <title>Despacho de Jabas</title>
 
+<!-- CSS general del sitio -->
 <link rel="stylesheet" href="css/style.css">
+
+<!-- CSS específico de esta página -->
 <link rel="stylesheet" href="css/despacho.css">
 
 </head>
 
 <body>
 
-<header>
+<header class="main-header">
 
 <div class="logo">
-<h2>CARRERA</h2>
-<p>Procesadora Laran</p>
+
+<img src="img/logo.png">
+
+<div>
+<h2>Procesadora Laran</h2>
+<p>Carrera C.</p>
 </div>
 
-<nav>
-<a href="index.html">Inicio</a>
-<a href="#">Salida de Jabas</a>
-<a href="#">Despacho</a>
-<a href="#">Grafico</a>
+</div>
+
+<nav class="menu">
+
+<a href="index.html" class="activo">Inicio</a>
+
 </nav>
 
 </header>
 
 
-<section class="hero">
+<section class="hero-sistema">
 
-<div class="overlay">
+<div class="hero-contenido">
 
-<h1>DESPACHO DE JABAS</h1>
-<p>Registro de Despacho de Jabas</p>
+<div class="hero-texto">
+
+<h1>Despacho de Jabas</h1>
+
+<p>
+Registro y control de despacho de jabas hacia los diferentes fundos.
+</p>
+
+</div>
+
+<div class="hero-img">
+
+<img src="img/img4.jpg">
+
+</div>
 
 </div>
 
 </section>
 
 
+<!-- CONTENEDOR PRINCIPAL DEL SISTEMA -->
 <section class="contenedor-despacho">
 
 
+<div class="panel-control">
 
+<!-- FILTROS -->
 <div class="filtros">
 
-<button class="btn-principal">FILTRO DE FECHA</button>
+<input type="date" id="buscarFecha">
 
-<button class="btn-secundario">FILTRO DE PROVEEDOR</button>
+<input type="text" id="buscarProveedor" placeholder="Proveedor">
 
-<button class="btn-secundario">FILTRAR POR FUNDO</button>
-
-<button class="btn-secundario">FILTRO POR GUIA</button>
+<input type="text" id="buscarFundo" placeholder="Fundo">
 
 </div>
 
+
+<!-- BOTONES -->
+<div class="acciones">
+
+<button id="limpiarFiltros">
+🧹 Limpiar
+</button>
+
+<button id="exportarExcel">
+📥 Exportar
+</button>
+
+</div>
+
+
+<!-- ESTADISTICAS -->
+<div class="estadisticas">
+
+<div class="card">
+<h3 id="totalCamiones">0</h3>
+<p>Camiones registrados</p>
+</div>
+
+<div class="card">
+<h3 id="totalJabas">0</h3>
+<p>Jabas despachadas</p>
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- AREA DONDE VA LA TABLA -->
 <div class="area-tabla">
 
 <div class="tabla">
@@ -73,34 +130,39 @@
 <th>TIPO DE JABA</th>
 <th>PROVEEDOR</th>
 <th>FUNDO</th>
-<th>GUIA</th>
 <th>CANTIDAD</th>
-<th>OBSERVACION</th>
+<th>PALETS</th>
+<th>SOBRANTES</th>
 </tr>
 
 </thead>
 
 <tbody id="tablaDatos">
+
+<!-- MENSAJE MIENTRAS CARGA FIREBASE -->
 <tr>
 <td colspan="9">Cargando datos...</td>
 </tr>
+
 </tbody>
 
 </table>
 
-</div>
-
-<div class="panel-imagen">
-
-IMAGEN EN MOVIMIENTO
-
-</div>
 
 </div>
 
 </section>
+
+
+
+
+
+<!-- LIBRERIAS DE FIREBASE -->
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
+<!-- SCRIPT DE TU SISTEMA -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="js/despacho.js"></script>
 
 </body>
