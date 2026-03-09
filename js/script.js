@@ -1,35 +1,122 @@
+document.addEventListener("DOMContentLoaded", () => {
 
-document.addEventListener("DOMContentLoaded", function(){
+const elementos = document.querySelectorAll(".animar");
 
-const hero = document.querySelector(".hero");
+const observer = new IntersectionObserver((entries) => {
 
-const imagenes = [
-"img/img1.jpg",
-"img/img2.jpg",
-"img/img3.jpg"
-];
+entries.forEach(entry => {
 
-let index = 0;
-
-function cambiarImagen(){
-
-hero.style.backgroundImage = `url(${imagenes[index]})`;
-
-hero.style.animation = "none";
-hero.offsetHeight;
-hero.style.animation = "movimiento 8s linear";
-
-index++;
-
-if(index >= imagenes.length){
-index = 0;
+if(entry.isIntersecting){
+entry.target.classList.add("mostrar");
 }
-
-}
-
-cambiarImagen();
-
-setInterval(cambiarImagen,9000);
 
 });
 
+});
+
+elementos.forEach(el => observer.observe(el));
+
+
+/* EFECTO 3D EN TARJETAS */
+
+const cards = document.querySelectorAll(".card-opcion");
+
+cards.forEach(card => {
+
+card.addEventListener("mousemove", (e) => {
+
+const rect = card.getBoundingClientRect();
+
+const x = e.clientX - rect.left;
+const y = e.clientY - rect.top;
+
+const centerX = rect.width / 2;
+const centerY = rect.height / 2;
+
+const rotateX = -(y - centerY) / 10;
+const rotateY = (x - centerX) / 10;
+
+card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
+
+});
+
+card.addEventListener("mouseleave", () => {
+
+card.style.transform = "rotateX(0) rotateY(0) scale(1)";
+
+});
+
+});
+
+
+/* CONTADOR ANIMADO */
+
+const numeros = document.querySelectorAll(".contador");
+
+numeros.forEach(num => {
+
+let valor = 0;
+const objetivo = num.dataset.numero;
+
+const intervalo = setInterval(() => {
+
+valor += Math.ceil(objetivo / 40);
+
+if(valor >= objetivo){
+valor = objetivo;
+clearInterval(intervalo);
+}
+
+num.textContent = valor;
+
+},40);
+
+});
+
+});
+
+var firebaseConfig = {
+  apiKey: "TU_API_KEY",
+  authDomain: "appmateriaprima.firebaseapp.com",
+  databaseURL: "https://appmateriaprima-default-rtdb.firebaseio.com/",
+  projectId: "appmateriaprima",
+  storageBucket: "appmateriaprima.appspot.com",
+  messagingSenderId: "XXXX",
+  appId: "XXXX"
+};
+
+firebase.initializeApp(firebaseConfig);
+
+
+
+document.addEventListener("DOMContentLoaded", function(){
+
+let totalCamiones = 0;
+let totalJabas = 0;
+
+firebase.database().ref("despachos").on("value", function(snapshot){
+
+totalCamiones = 0;
+totalJabas = 0;
+
+snapshot.forEach(function(child){
+
+let data = child.val();
+
+if(data.proveedor === "AGROINDUSTRIA CASABLANCA"){
+
+totalCamiones++;
+
+totalJabas += parseInt(data.jabas) || 0;
+
+}
+
+});
+
+document.getElementById("camiones-calera").innerText = totalCamiones;
+
+document.getElementById("jabas-calera").innerText = totalJabas.toLocaleString();
+
+});
+
+});
