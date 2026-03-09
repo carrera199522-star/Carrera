@@ -1,61 +1,180 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
 
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Procesadora Laran</title>
 
 <link rel="stylesheet" href="css/style.css">
+
+<!-- FUENTE MODERNA -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
 </head>
 
 <body>
 
-<header>
+<header class="main-header">
 
 <div class="logo">
 
-<h2>CARRERA</h2>
-<p>Procesadora Laran</p>
+<img src="img/logo.png">
+
+<div>
+<h2>Procesadora Laran</h2>
+<p>Carrera C.</p>
+</div>
 
 </div>
 
-<nav>
 
-<a href="./index.html">Inicio</a>
-<a href="./ingreso_jabas.html">Ingreso de Jabas</a>
-<a href="#">Salida de Jabas</a>
-<a href="#">Ingreso de MP</a>
-<a href="#">Grafico</a>
+<nav class="menu">
+
+<div class="dropdown">
+<a href="#">MP ▾</a>
+
+<div class="dropdown-content">
+<a href="#">Mandarina</a>
+<a href="#">Palta</a>
+<a href="#">Limón</a>
+<a href="#">Naranja</a>
+</div>
+
+</div>
+
+<a href="ingreso_jabas.html">Salida de Jabas</a>
+<a href="grafico.html">Gráficos</a>
 
 </nav>
 
 </header>
 
 
-<section class="hero">
+<section class="hero-sistema animar">
 
-<div class="overlay">
+<div class="hero-contenido">
 
-<h1>Recepción de Materia Prima - 2026 </h1>
+<div class="hero-texto">
+
+<h1>Recepción de Materia Prima</h1>
+<h2>2026</h2>
 
 <p>
-Sistema para registrar el ingreso de fruta y salida de jabas
-en la planta procesadora Laran.
+Área responsable del control y registro de la materia prima que ingresa, además de la organización y despacho de jabas hacia los diferentes fundos
 </p>
 
-<button>Ingreso al Sistema</button>
+<div class="hero-botones">
+
+<a href="ingreso_jabas.html" class="btn-primary">
+Ingreso de Jabas
+</a>
+
+<a href="grafico.html" class="btn-sec">
+Ver Gráficos
+</a>
+
+</div>
+
+</div>
+
+
+<div class="hero-img">
+
+<img src="img/img3.jpg">
+
+</div>
 
 </div>
 
 </section>
 
+
+<section class="panel-opciones animar">
+
+
+<div class="card-opcion">
+<img src="images/rmp.jpg" class="icono-card">
+<h3>Ingreso de MP</h3>
+<p>Registro de ingreso de materia prima.</p>
+<a href="mp_ingreso.html">Abrir</a>
+</div>
+
+<div class="card-opcion">
+<img src="images/salidas.jpg" class="icono-card">
+<h3>Salida de Jabas</h3>
+<p>Control de despacho de jabas.</p>
+<a href="salida_jabas.html">Abrir</a>
+</div>
+
+
+<div class="card-opcion">
+<img src="images/ingreso.jpg" class="icono-card">
+<h3>Ingreso de Jabas</h3>
+<p>Registro de jabas ingresadas.</p>
+<a href="ingreso_jabas.html">Abrir</a>
+</div>
+
+<div class="card-opcion">
+<img src="images/grafico.jpg" class="icono-card">
+<h3>Gráficos</h3>
+<p>Visualización de estadísticas.</p>
+<a href="grafico.html">Abrir</a>
+</div>
+
+</section>
+
+<section class="fundo-dashboard">
+
+<div class="fundo-bloque">
+
+<div class="fundo-img">
+<img src="images/data.jpg">
+<h3>Agroindustria Casa Blanca</h3>
+</div>
+
+<div class="fundo-info">
+
+
+
+<div class="card-fundo">
+<img src="images/x1.jpg" class="img-card">
+<h3>Camiones ingresados</h3>
+<h2 id="camiones-calera">0</h2>
+</div>
+
+<div class="card-fundo">
+<img src="images/x2.jpg" class="img-card">
+<h3>Jabas ingresadas</h3>
+<h2 id="jabas-calera">0</h2>
+<a href="salida_calera.html" class="btn-card">
+Salida de Jabas
+</a>
+</div>
+
+<div class="card-fundo">
+<img src="images/x3.jpg" class="img-card">
+<h3>Kg ingresados</h3>
+<h2 id="kg-calera">0</h2>
+<a href="kg_calera.html" class="btn-card">
+Ver Kg
+</a>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
 <script src="js/script.js"></script>
 
 </body>
 </html>
-
-
 
 
