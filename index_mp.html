@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+<title>Dashboard Materia Prima</title>
+
+<link rel="stylesheet" href="css/css_dashboard.css">
+
+</head>
+
+<body>
+
+<!-- TITULO -->
+
+<header class="titulo">
+<h1>INGRESO DE MATERIA PRIMA - CAMPAÑA 2026</h1>
+</header>
+
+
+
+<!-- TARJETAS -->
+
+<section class="tarjetas">
+
+<div class="card">
+<h2 id="tn">0</h2>
+<p>Ingreso TN</p>
+</div>
+
+<div class="card">
+<h2 id="promedio">0</h2>
+<p>Promedio Kg</p>
+</div>
+
+<div class="card">
+<h2 id="jabas">0</h2>
+<p>Ingreso de Jabas</p>
+</div>
+
+<div class="card">
+<h2 id="proveedores">0</h2>
+<p>Proveedores</p>
+</div>
+
+</section>
+
+
+
+<!-- FILTROS -->
+
+<section class="filtros">
+
+<select id="filtroMes">
+<option value="">Mes</option>
+<option value="Enero">Enero</option>
+<option value="Febrero">Febrero</option>
+<option value="Marzo">Marzo</option>
+</select>
+
+<select id="filtroSemana">
+<option value="">Semana</option>
+<option value="1">Semana 1</option>
+<option value="2">Semana 2</option>
+<option value="3">Semana 3</option>
+<option value="4">Semana 4</option>
+</select>
+
+<select id="filtroProveedor">
+<option value="">Proveedor</option>
+<option value="SAN GABRIEL">SAN GABRIEL</option>
+<option value="PERIQUITO">PERIQUITO</option>
+<option value="ESCONDIDO">ESCONDIDO</option>
+</select>
+
+<select id="filtroVariedad">
+<option value="">Variedad</option>
+<option value="HASS">HASS</option>
+<option value="ZUTANO">ZUTANO</option>
+<option value="ORRI">ORRI</option>
+<option value="MURCOTT">MURCOTT</option>
+</select>
+
+</section>
+
+
+
+<!-- GRAFICOS -->
+
+<section class="graficos">
+
+<div class="grafico">
+<h3>Ingreso por Variedad</h3>
+<canvas id="graficoVariedad"></canvas>
+</div>
+
+<div class="grafico">
+<h3>Total Ingreso</h3>
+<canvas id="graficoTotal"></canvas>
+</div>
+
+<div class="grafico">
+<h3>Ingreso por Fundo</h3>
+<canvas id="graficoFundo"></canvas>
+</div>
+
+</section>
+
+
+
+<!-- TABLA -->
+
+<section class="contenedor-inferior">
+
+<div class="tabla">
+
+<h3>Resumen de Ingreso</h3>
+
+<table>
+
+<thead>
+
+<tr>
+<th>Proveedor</th>
+<th>Lote Campo</th>
+<th>Variedad</th>
+<th>Sub Variedad</th>
+<th>Cant. Jabas</th>
+<th>Kg Ingresado</th>
+</tr>
+
+</thead>
+
+<tbody id="tablaDatos"></tbody>
+
+</table>
+
+</div>
+
+
+<div class="grafico">
+
+<h3>Ingreso de Jabas</h3>
+<canvas id="graficoJabas"></canvas>
+
+</div>
+
+</section>
+
+
+
+<!-- LIBRERIAS -->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+
+
+
+<!-- SCRIPT DASHBOARD -->
+
+<script src="js/js_dashboard.js"></script>
+
+</body>
+</html>
