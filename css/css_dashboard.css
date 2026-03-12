@@ -1,384 +1,652 @@
-// ==============================
-// sem
-// ==============================
-function semanaActual(){
+/* =========================
+ESTILO GENERAL
+========================= */
 
-let hoy = new Date();
+body{
 
-let inicio = new Date(hoy.getFullYear(),0,1);
+background:linear-gradient(135deg,#f5f5f5,#e9ecef);
 
-let dias = Math.floor((hoy - inicio) / (24*60*60*1000));
+font-family:"Segoe UI", Arial, sans-serif;
 
-return Math.ceil((dias + inicio.getDay()+1)/7);
+margin:0;
+
+}
+/* =========================
+CONTENEDOR GENERAL
+========================= */
+
+.container{
+
+width:90%;
+max-width:1400px;
+margin:auto;
+
+}
+.card{
+
+animation:fadeUp 0.8s ease;
+
+}
+
+@keyframes fadeUp{
+
+from{
+opacity:0;
+transform:translateY(20px);
+}
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+
+}
+
+
+/* =========================
+TITULO
+========================= */
+
+.titulo{
+
+background:#21B971;
+color:white;
+
+width:80%;
+margin:2px auto;
+
+padding:1px;
+
+text-align:center;
+
+border-radius:10px;
+
+}
+/* =========================
+TARJETAS
+========================= */
+
+.tarjetas{
+
+display:flex;
+justify-content:center;
+gap:15px;
+margin-top:15px;
+flex-wrap:wrap;
+
+}
+
+
+.card{
+
+background:white;
+
+padding:20px;
+
+border-radius:10px;
+
+width:150px;   /* ancho de la tarjeta */
+
+min-height:20px;  /* altura mínima */
+
+text-align:center;
+
+box-shadow:0 3px 8px rgba(0,0,0,0.08);
+
+}
+
+.card h2{
+
+margin:0;
+
+font-size:22px;
+
+color:#333;
+
+}
+
+.card p{
+
+margin-top:4px;
+
+font-size:12px;
+
+color:#666;
 
 }
 
 
 
+/* =========================
+FILTROS
+========================= */
 
-// ==============================
-// PLUGIN
-// ==============================
+.filtros{
 
-Chart.register(ChartDataLabels);
+display:grid;
 
+grid-template-columns: repeat(5, 1fr);
 
-// ==============================
-// VARIABLES
-// ==============================
+gap:28px;
 
-let datos = [];
-const tabla = document.getElementById("tablaDatos");
+width:85%;
 
-// ==============================
-// GRAFICO JABAS
-// ==============================
-
-const ctxJabas = document.getElementById("graficoJabas").getContext("2d");
-
-let graficoJabas = new Chart(ctxJabas, {
-type: "bar",
-data: {
-labels: ["TOTAL"],
-datasets: [{
-label: "Jabas",
-data: [0],
-backgroundColor: "#21B971",
-borderRadius: 8
-}]
-},
-
-options: {
-
-animation: {
-duration:1200,
-easing:'easeOutQuart'
-},
-
-plugins:{
-legend:{display:false}
-}
+margin:20px auto;
 
 }
 
-});
+.filtros select{
 
-// ==============================
-// GRAFICO VARIEDAD
-// ==============================
+width:100%;
 
-const ctxVariedad = document.getElementById("graficoVariedad").getContext("2d");
+padding:12px 14px;
 
-let graficoVariedad = new Chart(ctxVariedad,{
-type:"bar",
-data:{labels:[],datasets:[{data:[],backgroundColor:"#21B971"}]},
-options:{indexAxis:"y"}
-});
+border-radius:8px;
 
-// ==============================
-// SEMANAS
-// ==============================
+border:1px solid #ccc;
 
-function obtenerSemana(fechaStr){
+font-size:14px;
 
-let partes = fechaStr.split("/"); // dd/mm/yyyy
-let fecha = new Date(partes[2], partes[1]-1, partes[0]);
+background:white;
 
-let inicio = new Date(fecha.getFullYear(),0,1);
+box-shadow:0 3px 8px rgba(0,0,0,0.08);
 
-let dias = Math.floor((fecha - inicio) / (24*60*60*1000));
+}
 
-return Math.ceil((dias + inicio.getDay()+1)/7);
+.filtros select:hover{
+
+border-color:#21B971;
+
+box-shadow:0 4px 10px rgba(0,0,0,0.12);
+
+}
+
+/* =========================
+LINEA
+========================= */
+
+hr{
+
+width:90%;
+margin:auto;
+margin-top:15px;
+border:1px solid #21B971;
 
 }
 
 
-// ==============================
-// GRAFICO FUNDO
-// ==============================
 
-const ctxFundo = document.getElementById("graficoFundo").getContext("2d");
+/* =========================
+GRAFICOS SUPERIORES
+========================= */
 
-let gradient = ctxFundo.createLinearGradient(0,0,0,400);
-gradient.addColorStop(0,"#21B971");
-gradient.addColorStop(1,"#21B971");
+.graficos{
 
-let graficoFundo = new Chart(ctxFundo,{
-type:"bar",
-data:{
-labels:[],
-datasets:[{
-data:[],
-backgroundColor:gradient,
-borderRadius:10
-}]
-}
-});
-// ==============================
-// GRAFICO TOTAL
-// ==============================
+display:grid;
 
-const ctxTotal = document.getElementById("graficoTotal").getContext("2d");
+grid-template-columns:1fr 1fr 1fr;
 
-let graficoTotal = new Chart(ctxTotal,{
-type:"line",
-data:{labels:[],datasets:[{data:[],borderColor:"#21B971",fill:false}]}
-});
+gap:20px;
 
-// ==============================
-// TABLA
-// ==============================
+width:90%;
 
-function cargarTabla(lista){
+margin:auto;
 
-tabla.innerHTML="";
-
-lista.forEach(d=>{
-
-tabla.innerHTML+=`
-<tr>
-<td>${d.proveedor}</td>
-<td>${d.lote_campo}</td>
-<td>${d.variedad}</td>
-<td>${d.sub_variedad}</td>
-<td>${d.jabas}</td>
-<td>${Math.round(d.kg).toLocaleString("es-PE")}</td>
-</tr>
-`;
-
-});
+margin-top:20px;
 
 }
 
-// ==============================
-// TARJETAS
-// ==============================
-
-function actualizarTarjetas(lista){
-
-let totalKg = lista.reduce((sum,d)=> sum+d.kg,0);
-let totalJabas = lista.reduce((sum,d)=> sum+d.jabas,0);
-let promedio = lista.length>0 ? totalKg/lista.length : 0;
-let proveedores = new Set(lista.map(d=>d.proveedor)).size;
-
-document.getElementById("tn").innerText =
-Math.round(totalKg/1000).toLocaleString("es-PE");
-
-document.getElementById("promedio").innerText =
-Math.round(promedio).toLocaleString("es-PE");
-
-document.getElementById("jabas").innerText =
-totalJabas.toLocaleString("es-PE");
-
-document.getElementById("proveedores").innerText =
-proveedores;
-
-}
-
-// ==============================
-// GRAFICOS
-// ==============================
-
-function actualizarGraficos(lista){
-
-let variedad={};
-let fundo={};
-
-lista.forEach(d=>{
-variedad[d.variedad]=(variedad[d.variedad]||0)+d.kg;
-fundo[d.lote_campo]=(fundo[d.lote_campo]||0)+d.kg;
-});
-
-graficoVariedad.data.labels=Object.keys(variedad);
-graficoVariedad.data.datasets[0].data=Object.values(variedad);
-graficoVariedad.update();
-
-graficoFundo.data.labels=Object.keys(fundo);
-graficoFundo.data.datasets[0].data=Object.values(fundo);
-graficoFundo.update();
-
-graficoTotal.data.labels=lista.map(d=>d.lote);
-graficoTotal.data.datasets[0].data=lista.map(d=>d.kg);
-graficoTotal.update();
-
-let totalJabas=lista.reduce((s,d)=>s+d.jabas,0);
-graficoJabas.data.datasets[0].data=[totalJabas];
-graficoJabas.update();
-
-}
-
-// ==============================
-// FILTROS
-// ==============================
-
-function aplicarFiltros(){
-
-let fecha = document.getElementById("filtroFecha").value;
-let proveedor = document.getElementById("filtroProveedor").value;
-let variedad = document.getElementById("filtroVariedad").value;
-let mp = document.getElementById("filtroMP").value;
-let semana = document.getElementById("filtroSemana").value;
-let filtrados = datos.filter(d => {
-
-return(
-
-(fecha === "" || d.fecha == fecha) &&
-(semana === "" || d.semana == semana) &&
-(proveedor === "" || d.proveedor == proveedor) &&
-(variedad === "" || d.variedad == variedad) &&
-(mp === "" || d.mp == mp)
-
-);
-
-});
-
-cargarTabla(filtrados);
-actualizarGraficos(filtrados);
-actualizarTarjetas(filtrados);
-
-}
-// ==============================
-// LLENAR FILTROS
-// ==============================
-
-function llenarFiltros(){
-
-let filtroFecha = document.getElementById("filtroFecha");
-let filtroProveedor = document.getElementById("filtroProveedor");
-let filtroVariedad = document.getElementById("filtroVariedad");
-
-// limpiar filtros antes de llenarlos
-filtroFecha.innerHTML = `<option value="">Fecha</option>`;
-filtroProveedor.innerHTML = `<option value="">Proveedor</option>`;
-filtroVariedad.innerHTML = `<option value="">Variedad</option>`;
-
-// obtener valores únicos y limpiar espacios
 
 
-let fechas = [...new Set(datos.map(d => (d.fecha || "").toString().trim()))];
+/* CAJA GRAFICO */
 
-fechas.sort((a,b)=>{
+.grafico{
 
-let pa = a.split("/");
-let pb = b.split("/");
+background:white;
 
-let fa = new Date(pa[2], pa[1]-1, pa[0]);
-let fb = new Date(pb[2], pb[1]-1, pb[0]);
+border-radius:10px;
 
-return fa - fb;
+box-shadow:0 3px 8px rgba(0,0,0,0.08);
 
-});
-
-let proveedores = [...new Set(datos.map(d => (d.proveedor || "").toString().trim()))];
-let variedades = [...new Set(datos.map(d => (d.variedad || "").toString().trim()))];
-
-// ordenar solo estos
-proveedores.sort();
-variedades.sort();
-// llenar fechas
-fechas.forEach(f=>{
-if(f !== "") filtroFecha.innerHTML += `<option value="${f}">${f}</option>`;
-});
-
-// llenar proveedores
-proveedores.forEach(p=>{
-if(p !== "") filtroProveedor.innerHTML += `<option value="${p}">${p}</option>`;
-});
-
-// llenar variedades
-variedades.forEach(v=>{
-if(v !== "") filtroVariedad.innerHTML += `<option value="${v}">${v}</option>`;
-});
-
-
-// llenar semana
-let semanas = [...new Set(datos.map(d=>d.semana))];
-let filtroSemana = document.getElementById("filtroSemana");
-filtroSemana.innerHTML = `<option value="">Semana</option>`;
-semanas.sort((a,b)=>a-b);
-semanas.forEach(s=>{
-filtroSemana.innerHTML += `<option value="${s}">Semana ${s}</option>`;
-});
-
-}
-
-// ==============================
-// FIREBASE
-// ==============================
-
-function cargarFirebase(){
-
-fetch("https://appmateriaprima-default-rtdb.firebaseio.com/mp/registros.json")
-
-.then(res=>res.json())
-
-.then(data=>{
-
-datos = Object.values(data)
-.filter(d => d.jabas && !isNaN(d.jabas))
-.map(d=>({
-
-fecha: convertirFechaExcel(d.fecha),
-semana: obtenerSemana(convertirFechaExcel(d.fecha)),
-proveedor:d.proveedor || "",
-lote_campo:d.lote_campo || "",
-variedad:d.variedad || "",
-sub_variedad:d.sub_variedad || "",
-lote:d.lote || "",
-mp: d.mp || "",   // ← ESTA LINEA ES IMPORTANTE
-jabas:Number(d.jabas) || 0,
-kg:Number(d.peso_final) || 0
-
-}));
-
-
-
-
-cargarTabla(datos);
-actualizarGraficos(datos);
-actualizarTarjetas(datos);
-llenarFiltros();
-let semanaHoy = semanaActual();
-let filtroSemana = document.getElementById("filtroSemana");
-filtroSemana.value = semanaHoy;
-aplicarFiltros();
-});
-
-
-}
-function convertirFechaExcel(numero){
-
-if(!numero) return "";
-
-let fecha = new Date((numero - 25569) * 86400 * 1000);
-
-fecha.setMinutes(fecha.getMinutes() + fecha.getTimezoneOffset());
-
-return fecha.toLocaleDateString("es-PE");
+padding:12px;
 
 }
 
 
-// ==============================
-// EVENTOS FILTROS
-// ==============================
 
-document.getElementById("filtroFecha").addEventListener("change", aplicarFiltros);
-document.getElementById("filtroProveedor").addEventListener("change", aplicarFiltros);
-document.getElementById("filtroVariedad").addEventListener("change", aplicarFiltros);
-document.getElementById("filtroMP").addEventListener("change", aplicarFiltros);
-document.getElementById("filtroSemana").addEventListener("change", aplicarFiltros);
+/* TITULO GRAFICO */
 
-// ==============================
-// INICIAR
-// ==============================
+.grafico h3{
 
-datasets:[{
-data:[],
-backgroundColor:"#21B971",
-borderRadius:10
-}]
+font-size:14px;
+
+text-align:center;
+
+margin-bottom:8px;
+
+color:#21B971;
+
+}
 
 
 
-cargarFirebase();
+/* TAMAÑO DEL GRAFICO */
+
+canvas{
+
+max-height:200px;
+width:100%;
+
+}
+
+
+
+/* =========================
+CONTENEDOR INFERIOR
+TABLA + GRAFICO
+========================= */
+
+.contenedor-inferior{
+
+display:grid;
+
+grid-template-columns:2fr 1fr;
+
+gap:20px;
+
+width:90%;
+
+margin:auto;
+
+margin-top:20px;
+
+align-items:start;
+
+}
+
+
+
+/* =========================
+TABLA
+========================= */
+.tabla{
+
+width:100%;
+
+height:266px;   /* altura fija */
+
+overflow-y:auto;   /* scroll vertical */
+
+background:white;
+
+border-radius:10px;
+
+box-shadow:0 3px 8px rgba(0,0,0,0.08);
+
+}
+.tabla table thead th{
+
+position:sticky;
+
+top:0;
+
+background:#21B971;   /* color del encabezado */
+
+color:white;
+
+z-index:3;
+
+box-shadow:0 2px 4px rgba(0,0,0,0.15);
+
+}
+
+.tabla h3{
+
+background:#21B971;
+
+color:white;
+
+padding:8px;
+
+font-size:14px;
+
+border-radius:6px 6px 0 0;
+
+text-align:center;
+
+margin:0;
+
+}
+
+
+
+table{
+
+width:100%;
+
+border-collapse:collapse;
+
+background:white;
+
+}
+
+
+
+th{
+
+background:#21B971;
+
+color:white;
+
+padding:12px;
+
+font-size:14px;
+
+font-weight:600;
+
+}
+
+
+td{
+
+padding:12px 14px;
+
+font-size:14px;   /* letra más grande */
+
+border-bottom:1px solid #e5e5e5;   /* línea entre filas */
+text-align:center;
+}
+tbody tr:hover{
+
+background:#f3f7fa;
+
+cursor:pointer;
+
+}
+
+
+
+tr:hover{
+
+background:#f9f9f9;
+
+}
+
+.card{
+
+transition:all 0.3s ease;
+
+}
+
+.card:hover{
+
+transform:translateY(-6px) scale(1.03);
+
+box-shadow:0 10px 25px rgba(0,0,0,0.15);
+
+}
+
+/* =========================
+RESPONSIVE
+========================= */
+
+@media(max-width:1000px){
+
+.graficos{
+
+grid-template-columns:1fr;
+
+}
+
+.contenedor-inferior{
+
+grid-template-columns:1fr;
+
+}
+
+.tarjetas{
+
+flex-direction:column;
+
+align-items:center;
+
+}
+
+}
+
+.titulo{
+
+background:#21B971;
+max-width:1200px;
+margin:20px auto;
+padding:5px;
+border-radius:12px;
+
+}
+
+.header-contenido{
+
+display:flex;
+align-items:center;
+justify-content:space-between;
+
+}
+
+.titulo h1{
+
+color:white;
+font-size:28px;
+margin:0;
+text-align:center;
+flex:1;
+
+}
+
+.logo-izq{
+
+height:90px;
+
+}
+
+.logo-der{
+
+height:80px;
+
+}
+.contenedor-header{
+
+position:relative;
+max-width:1200px;
+margin:20px auto;
+
+}
+
+.titulo{
+
+background:#21B971;
+padding:12px;
+border-radius:12px;
+
+}
+
+.header-contenido{
+
+display:flex;
+align-items:center;
+justify-content:center;
+gap:20px;
+
+}
+
+.titulo h1{
+
+color:white;
+margin:0;
+font-size:28px;
+
+}
+
+.logo-izq{
+
+height:45px;
+
+}
+
+.logo-empresa{
+
+position:absolute;
+right:-90px;
+top:5px;
+height:60px;
+
+}
+/* NAVBAR */
+
+.navbar{
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+background:white;
+
+padding:10px 40px;
+
+box-shadow:0 2px 6px rgba(0,0,0,0.1);
+
+}
+
+/* lado izquierdo */
+
+.nav-izq{
+
+display:flex;
+align-items:center;
+gap:15px;
+
+}
+
+.logo{
+
+height:45px;
+
+}
+
+/* nombre empresa */
+
+.empresa h2{
+
+margin:0;
+font-size:22px;
+color:#2c6b7c;
+
+}
+
+.empresa span{
+
+font-size:12px;
+color:#777;
+
+}
+
+/* menu */
+
+.menu{
+
+display:flex;
+gap:30px;
+
+}
+
+.menu a{
+
+text-decoration:none;
+
+color:#2b2b2b;
+
+font-weight:600;
+
+font-size:16px;
+
+padding:8px 18px;
+
+border-radius:10px;
+
+transition:all 0.25s ease;
+
+}
+
+.menu a:hover{
+
+background:#9fbfc3;
+
+color:#1b5e20;
+
+}
+
+.menu a{
+
+position:relative;
+
+}
+
+.menu a::after{
+
+content:"";
+
+position:absolute;
+
+left:10px;
+
+bottom:2px;
+
+width:0;
+
+height:2px;
+
+background:#21B971;
+
+transition:0.3s;
+
+}
+
+.menu a:hover::after{
+
+width:70%;
+
+}
+.card{
+
+animation:subir 0.6s ease;
+
+}
+
+@keyframes subir{
+
+from{
+
+opacity:0;
+transform:translateY(20px);
+
+}
+
+to{
+
+opacity:1;
+transform:translateY(0);
+
+}
+
+}
+.card{
+
+transition:all 0.3s ease;
+
+}
+
+.card:hover{
+
+transform:translateY(-5px);
+box-shadow:0 8px 20px rgba(0,0,0,0.15);
+
+}
