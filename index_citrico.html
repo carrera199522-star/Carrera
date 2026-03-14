@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+<title>Dashboard Materia Prima</title>
+
+<link rel="stylesheet" href="css/css_dashboard-citrico.css">
+
+</head>
+
+
+<header class="navbar">
+<div class="nav-izq">
+<img src="img/logo.png" class="logo">
+<div class="empresa">
+<h2>Procesadora Laran</h2>
+<span>Castilla C.</span>
+
+</div>
+
+</div>
+
+<nav class="menu">
+
+<a href="index.html">Inicio</a>
+<a href="ingreso_jabas.html">Ingreso de Jabas</a>
+<a href="salida_jabas.html">Salida de Jabas</a>
+<a href="graficos.html">Gráficos</a>
+
+</nav>
+
+</header>
+
+
+
+
+
+
+<body>
+
+<!-- TITULO -->
+
+<div class="contenedor-header">
+
+<header class="titulo">
+<div class="header-contenido">
+<img src="img/mandarin.png" class="logo-izq">
+<h1>INGRESO DE MP - CAMPAÑA 2026 - CITRICO</h1>
+</div>
+</header>
+<img src="img/logo.png" class="logo-empresa">
+
+</div>
+
+
+
+<!-- TARJETAS -->
+
+<section class="tarjetas">
+
+<div class="card">
+<h2 id="proyeccion">0</h2>
+<p>Proyección TN</p>
+</div>
+
+<div class="card">
+<h2 id="tn">0</h2>
+<p>Ingreso TN</p>
+</div>
+
+<div class="card">
+<h2 id="diferencia">0%</h2>
+<p>Diferencia</p>
+</div>
+
+<div class="card">
+<h2 id="promedio">0</h2>
+<p>Promedio Kg</p>
+</div>
+
+<div class="card">
+<h2 id="jabas">0</h2>
+<p>Ingreso de Jabas</p>
+</div>
+
+</section>
+
+<!-- FILTROS -->
+
+<section class="filtros">
+
+<select id="filtroFecha">
+<option value="">Fecha</option>
+</select>
+
+<select id="filtroSemana">
+<option value="">Semana</option>
+</select>
+
+<select id="filtroMP" disabled>
+<option value="PALTA" selected>PALTA</option>
+</select>
+
+<select id="filtroProveedor">
+<option value="">Proveedor</option>
+</select>
+
+<select id="filtroVariedad">
+<option value="">Variedad</option>
+</select>
+
+</section>
+
+
+
+<!-- GRAFICOS -->
+
+<section class="graficos">
+
+<div class="grafico">
+<h3>Ingreso por Variedad</h3>
+<canvas id="graficoVariedad"></canvas>
+</div>
+
+<div class="grafico">
+<h3>Total Ingreso</h3>
+<canvas id="graficoTotal"></canvas>
+</div>
+
+<div class="grafico">
+<h3>Ingreso por Fundo</h3>
+<canvas id="graficoFundo"></canvas>
+</div>
+
+<div class="grafico">
+<h3>Ingreso por Mes</h3>
+<canvas id="graficoMes"></canvas>
+</div>
+
+<div class="grafico">
+<h3>Ingreso por Día</h3>
+<canvas id="graficoDia"></canvas>
+</div>
+
+<div class="grafico">
+<h3>Ingreso de Jabas</h3>
+<canvas id="graficoJabas"></canvas>
+</div>
+
+
+</section>
+
+
+
+<!-- TABLA -->
+
+<section class="contenedor-inferior">
+
+<div class="tabla">
+
+<h3>Resumen de Ingreso</h3>
+
+<table>
+
+<thead>
+<tr>
+<th width="100">Fecha</th>
+<th width="150">Proveedor</th>
+<th width="130">Lote</th>
+<th width="120">Guía</th>
+<th width="90">Cant Jabas</th>
+<th width="110">Peso Neto</th>
+<th width="80">MP</th>
+<th width="120">Variedad</th>
+<th width="120">Sub Variedad</th>
+<th width="120">Lote Campo</th>
+<th width="120">CLP</th>
+<th width="120">Acopio</th>
+<th width="120">Entrega</th>
+</tr>
+</thead>
+
+<tbody id="tablaDatos">
+</tbody>
+
+<tfoot id="tablaTotal">
+</tfoot>
+
+</table>
+</div>
+</section>
+<div style="text-align:center; margin:15px;">
+<button onclick="exportarExcel()" class="btn-exportar">
+ Exportar a Excel
+</button>
+</div>
+
+
+<!-- LIBRERIAS -->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+<script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+
+
+<!-- SCRIPT DASHBOARD -->
+
+<script src="js/js_dashboard_citrico.js"></script>
+
+</body>
+</html>
+
+
+<footer class="footer-dashboard">
+
+<div class="footer-contenido">
+
+<div class="footer-izquierda">
+
+<img src="img/logo.png" class="footer-logo">
+
+<div class="footer-titulo">
+<h2>Procesadora Laran</h2>
+<p>Castilla C.</p>
+</div>
+
+</div>
+
+
+<div class="footer-derecha">
+
+<h3>Sistema de Control de Ingreso de MP</h3>
+<p>Campaña 2026 - Procesadora Laran</p>
+<p>Jesus Castilla Carrera</p>
+
+</div>
+
+</div>
+
+</footer>
