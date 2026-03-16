@@ -231,26 +231,50 @@ Ver Kg
 </footer>
 
 
-<style>
-df-messenger {
-  --df-messenger-button-titlebar-color: #1f6f8b;
-  --df-messenger-chat-background-color: #f4f6f9;
-  --df-messenger-user-message: #dbeafe;
-  --df-messenger-bot-message: #ffffff;
-  --df-messenger-font-color: #1f2937;
-  --df-messenger-chat-border-radius: 15px;
+<script>
+
+function abrirChat(){
+document.getElementById("chatVentana").style.display="flex";
 }
 
-</style>
+function cerrarChat(){
+document.getElementById("chatVentana").style.display="none";
+}
 
-<script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+async function preguntarAI(){
 
-<df-messenger
- chat-title="🤖 Asistente SAP"
-  agent-id="92c0ed3e-e359-4a3d-aa65-d75490e95dd8"
-  language-code="es"
-chat-icon="https://cdn-icons-png.flaticon.com/512/4712/4712109.png">
-</df-messenger>
+let pregunta=document.getElementById("pregunta").value;
+
+let chat=document.getElementById("chatMensajes");
+
+chat.innerHTML += "<div><b>Tú:</b> "+pregunta+"</div>";
+
+let response=await fetch("https://api.openai.com/v1/responses",{
+method:"POST",
+headers:{
+"Content-Type":"application/json",
+"Authorization":"Bearer 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"
+},
+body:JSON.stringify({
+model:"gpt-5-mini",
+input:pregunta
+})
+});
+
+let data=await response.json();
+
+let respuesta=data.output[0].content[0].text;
+
+chat.innerHTML += "<div><b>Bot:</b> "+respuesta+"</div>";
+
+document.getElementById("pregunta").value="";
+
+chat.scrollTop=chat.scrollHeight;
+
+}
+
+</script>
+
 
 </body>
 </html>
