@@ -558,10 +558,9 @@ color:#777;
 /* menu */
 
 .menu{
-
 display:flex;
+align-items:center;
 gap:30px;
-
 }
 
 .menu a{
@@ -813,3 +812,89 @@ background:#FCC96C;
 transform:scale(1.05);
 
 }
+
+/* =====================================================
+   DROPDOWN (MENU MP)
+===================================================== */
+
+/* BOTON MP */
+
+.dropdown > a{
+
+text-decoration:none;
+color:#232623;
+font-weight:500;
+font-size:16px;
+
+padding:12px 28px;   /* ← más grande */
+
+border-radius:10px;
+transition:0.3s;
+
+}
+
+.dropdown{
+position:relative;
+}
+
+
+
+.dropdown-content a{
+
+display:block;
+padding:10px 20px;
+
+color:#00b894;
+
+}
+
+.dropdown-content a:hover{
+
+background:#00b894;
+color:white;
+
+}
+
+.dropdown:hover .dropdown-content{
+
+display:block;
+
+}
+.dropdown > a:hover{
+
+background:#9BC7CE; 
+color:#2e7d32;
+
+}
+
+.dropdown-content{
+
+display:none;
+position:absolute;
+
+top:100%;
+left:0;
+
+background:white;
+
+border-radius:6px;
+box-shadow:0 5px 15px rgba(0,0,0,0.2);
+
+z-index:2000;   /* importante */
+
+}
+
+/* primer item del menu */
+.dropdown-content a:first-child{
+border-top-left-radius:10px;
+border-top-right-radius:10px;
+}
+
+/* ultimo item del menu */
+.dropdown-content a:last-child{
+border-bottom-left-radius:10px;
+border-bottom-right-radius:10px;
+}
+
+
+
