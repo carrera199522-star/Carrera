@@ -114,7 +114,7 @@ transition:0.3s;
 .dropdown > a{
 
 text-decoration:none;
-color:#2e7d32;
+color:#232623;
 font-weight:500;
 font-size:16px;
 
@@ -149,13 +149,13 @@ box-shadow:0 5px 15px rgba(0,0,0,0.2);
 display:block;
 padding:10px 20px;
 
-color:#2e7d32;
+color:#00b894;
 
 }
 
 .dropdown-content a:hover{
 
-background:#2e7d32;
+background:#00b894;
 color:white;
 
 }
@@ -1209,6 +1209,38 @@ margin:3px 0;
 font-size:14px;
 color:#6c757d;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
