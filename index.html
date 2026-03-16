@@ -212,12 +212,25 @@ Ver Kg
 
 </footer>
 
-  <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+<style>
+df-messenger {
+  --df-messenger-button-titlebar-color: #1f6f8b;
+  --df-messenger-chat-background-color: #f4f6f9;
+  --df-messenger-user-message: #dbeafe;
+  --df-messenger-bot-message: #ffffff;
+  --df-messenger-font-color: #1f2937;
+  --df-messenger-chat-border-radius: 15px;
+}
+
+</style>
+
+<script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
 
 <df-messenger
-  chat-title="AsistenteSAP"
+ chat-title="🤖 Asistente SAP"
   agent-id="92c0ed3e-e359-4a3d-aa65-d75490e95dd8"
-  language-code="es">
+  language-code="es"
+chat-icon="https://cdn-icons-png.flaticon.com/512/4712/4712109.png">
 </df-messenger>
   
 
