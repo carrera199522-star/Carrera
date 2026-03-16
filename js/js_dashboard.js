@@ -28,7 +28,18 @@ Chart.register(ChartDataLabels);
 // ==============================
 
 let datos = [];
+let proyeccionTN = 0;
+let proyeccionDatos = [];
 const tabla = document.getElementById("tablaDatos");
+
+
+
+
+
+
+
+
+
 
 // ==============================
 // GRAFICO JABAS
@@ -252,13 +263,11 @@ tabla.innerHTML+=`
 // ==============================
 // TARJETAS
 // ==============================
-
 function actualizarTarjetas(lista){
 
-let totalKg = lista.reduce((sum,d)=> sum+d.kg,0);
-let totalJabas = lista.reduce((sum,d)=> sum+d.jabas,0);
-let promedio = lista.length>0 ? totalKg/lista.length : 0;
-let proveedores = new Set(lista.map(d=>d.proveedor)).size;
+let totalKg = lista.reduce((sum,d)=> sum + d.kg, 0);
+let totalJabas = lista.reduce((sum,d)=> sum + d.jabas, 0);
+let promedio = lista.length > 0 ? totalKg / lista.length : 0;
 
 document.getElementById("tn").innerText =
 Math.round(totalKg/1000).toLocaleString("es-PE");
@@ -269,25 +278,30 @@ Math.round(promedio).toLocaleString("es-PE");
 document.getElementById("jabas").innerText =
 totalJabas.toLocaleString("es-PE");
 
-//document.getElementById("proveedores").innerText =
-//proveedores;
 
+// ==============================
+// DIFERENCIA PROYECCION
+// ==============================
 
-// PROYECCION (valor temporal)
-let proyeccion = 100;
+let ingresoTN = totalKg / 1000;
+let proyeccion = proyeccionTN;
 
-document.getElementById("proyeccion").innerText =
-proyeccion.toLocaleString("es-PE");
+let diferencia = 0;
 
-// DIFERENCIA
-let ingresoTN = totalKg/1000;
-let diferencia = proyeccion > 0 ? (ingresoTN / proyeccion) * 100 : 0;
+if (ingresoTN > 0) {
 
+let porcentaje = Math.round((proyeccion / ingresoTN) * 100);
+
+diferencia = 100 - porcentaje;
+
+}
+
+document.getElementById("diferencia").innerText =
+diferencia + "%";
 document.getElementById("diferencia").innerText =
 Math.round(diferencia) + "%";
 
 }
-
 // ==============================
 // GRAFICO DIA
 // ==============================
@@ -367,15 +381,16 @@ graficoJabas.update();
 // TOTAL INGRESO
 // ==============================
 
-let totalKg=lista.reduce((sum,d)=>sum+d.kg,0);
-let ingresoTN=totalKg/1000;
+let totalKg = lista.reduce((sum,d)=>sum+d.kg,0);
+let ingresoTN = totalKg/1000;
 
-let proyeccion=100;
-let restante=proyeccion-ingresoTN;
+let proyeccion = proyeccionTN;
 
-graficoTotal.data.datasets[0].data=[
+graficoTotal.data.labels = ["Ingreso","Proyección"];
+
+graficoTotal.data.datasets[0].data = [
 Math.round(ingresoTN),
-Math.round(restante)
+Math.round(proyeccion)
 ];
 
 graficoTotal.update();
@@ -476,6 +491,7 @@ let proveedor = document.getElementById("filtroProveedor").value;
 let variedad = document.getElementById("filtroVariedad").value;
 let mp = document.getElementById("filtroMP").value;
 let semana = document.getElementById("filtroSemana").value;
+
 let filtrados = datos.filter(d => {
 
 return(
@@ -490,9 +506,12 @@ return(
 
 });
 
+
+
 let semanaSeleccionada = document.getElementById("filtroSemana").value;
 let listaSemana = datos.filter(d => d.semana == semanaSeleccionada);
 
+calcularProyeccion();
 cargarTabla(filtrados);
 actualizarGraficos(filtrados);
 actualizarTarjetas(filtrados);
@@ -563,8 +582,53 @@ filtroSemana.innerHTML += `<option value="${s}">Semana ${s}</option>`;
 
 }
 
+function cargarProyeccion(){
 
+fetch("https://appmateriaprima-default-rtdb.firebaseio.com/proyeccion.json")
 
+.then(res=>res.json())
+
+.then(data=>{
+
+proyeccionDatos = Object.values(data);
+
+calcularProyeccion();
+
+});
+
+}
+cargarProyeccion();
+
+function calcularProyeccion(){
+
+let fecha = document.getElementById("filtroFecha").value;
+let semana = document.getElementById("filtroSemana").value;
+let variedad = document.getElementById("filtroVariedad").value;
+let mp = document.getElementById("filtroMP").value;
+
+let filtrado = proyeccionDatos.filter(p => {
+
+let fechaProy = convertirFechaExcel(p.fecha);
+
+return (
+
+(fecha === "" || fechaProy == fecha) &&
+(semana === "" || p.semana == semana) &&
+(variedad === "" || p.variedad == variedad) &&
+(mp === "" || p.mp == mp)
+
+);
+
+});
+
+let total = filtrado.reduce((sum,p)=> sum + Number(p.proyectado || 0),0);
+
+proyeccionTN = total/1000;
+
+document.getElementById("proyeccion").innerText =
+Math.round(proyeccionTN).toLocaleString("es-PE");
+
+}
 
 // ==============================
 // FIREBASE
@@ -648,7 +712,7 @@ let filtroSemana = document.getElementById("filtroSemana");
 filtroSemana.value = semanaHoy;
 
 aplicarFiltros();
-
+calcularProyeccion();
 });
 
 }
