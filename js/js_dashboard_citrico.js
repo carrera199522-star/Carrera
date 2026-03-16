@@ -705,3 +705,4 @@ link.download = "Reporte_Ingreso_citrico.xls";
 link.click();
 
 }
+
