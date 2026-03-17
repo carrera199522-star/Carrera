@@ -336,7 +336,7 @@ let chat = document.getElementById("chatMensajes");
 
 chat.innerHTML += "<div><b>Tú:</b> "+pregunta+"</div>";
 
-let response = await fetch("https://chatbot-hu7nkokaq-uc.a.run.app",{
+let response = await fetch("https://us-central1-chatbot-castilla.cloudfunctions.net/chatbot",{
 method:"POST",
 mode:"cors",
 headers:{
