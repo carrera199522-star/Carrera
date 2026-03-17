@@ -332,26 +332,23 @@ document.getElementById("chatVentana").style.display="none";
 async function preguntarAI(){
 
 let pregunta=document.getElementById("pregunta").value;
-
 let chat=document.getElementById("chatMensajes");
 
 chat.innerHTML += "<div><b>Tú:</b> "+pregunta+"</div>";
 
-let response=await fetch("https://api.openai.com/v1/responses",{
+let response = await fetch("https://chatbot-hu7nkokaq-uc.a.run.app",{
 method:"POST",
 headers:{
-"Content-Type":"application/json",
-"Authorization":"Bearer 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"
+"Content-Type":"application/json"
 },
 body:JSON.stringify({
-model:"gpt-4.1-mini",
-input:pregunta
+pregunta: pregunta
 })
 });
 
-let data=await response.json();
+let data = await response.json();
 
-let respuesta=data.output[0].content[0].text;
+let respuesta=data.respuesta;
 
 chat.innerHTML += "<div><b>Bot:</b> "+respuesta+"</div>";
 
