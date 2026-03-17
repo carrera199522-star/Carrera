@@ -338,6 +338,7 @@ chat.innerHTML += "<div><b>Tú:</b> "+pregunta+"</div>";
 
 let response = await fetch("https://chatbot-hu7nkokaq-uc.a.run.app",{
 method:"POST",
+mode:"cors",
 headers:{
 "Content-Type":"application/json"
 },
