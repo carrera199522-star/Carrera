@@ -331,8 +331,8 @@ document.getElementById("chatVentana").style.display="none";
 
 async function preguntarAI(){
 
-let pregunta=document.getElementById("pregunta").value;
-let chat=document.getElementById("chatMensajes");
+let pregunta = document.getElementById("pregunta").value;
+let chat = document.getElementById("chatMensajes");
 
 chat.innerHTML += "<div><b>Tú:</b> "+pregunta+"</div>";
 
@@ -348,12 +348,9 @@ pregunta: pregunta
 
 let data = await response.json();
 
-let respuesta=data.respuesta;
-
-chat.innerHTML += "<div><b>Bot:</b> "+respuesta+"</div>";
+chat.innerHTML += "<div><b>Bot:</b> "+data.respuesta+"</div>";
 
 document.getElementById("pregunta").value="";
-
 chat.scrollTop=chat.scrollHeight;
 
 }
