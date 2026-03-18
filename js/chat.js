@@ -1,4 +1,3 @@
-// ENVIAR MENSAJE
 async function enviar(){
 
 let input = document.getElementById("pregunta");
@@ -18,15 +17,12 @@ chat.appendChild(user);
 
 input.value = "";
 
-chat.scrollTop = chat.scrollHeight;
-
-
 /* MENSAJE BOT */
 
 let bot = document.createElement("div");
-bot.className="msg-bot";
+bot.className = "msg-bot";
 
-bot.innerHTML=`
+bot.innerHTML = `
 <div class="avatar">
 <img src="img/bots.png">
 </div>
@@ -36,9 +32,6 @@ bot.innerHTML=`
 chat.appendChild(bot);
 
 let bubble = bot.querySelector(".bubble");
-
-
-/* LLAMAR API */
 
 try{
 
@@ -66,14 +59,13 @@ chat.scrollTop = chat.scrollHeight;
 
 }
 
-
 /* ENTER PARA ENVIAR */
 
-document.addEventListener("DOMContentLoaded",function(){
+document.addEventListener("DOMContentLoaded", function(){
 
 let input = document.getElementById("pregunta");
 
-input.addEventListener("keypress",function(e){
+input.addEventListener("keypress", function(e){
 
 if(e.key === "Enter"){
 enviar();
