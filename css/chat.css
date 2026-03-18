@@ -119,12 +119,13 @@ background:transparent; /* sin fondo */
 width:24px;
 height:24px;
 }
+
+
 .chat-mensajes{
 display:flex;
 flex-direction:column;
 padding:30px;
-max-width:900px;
-margin:auto;
+width:100%;
 }
 
 /* MENSAJE USUARIO */
@@ -136,10 +137,8 @@ padding:10px 15px;
 border-radius:12px;
 max-width:450px;
 margin-left:auto;
-margin-right:60px;
-word-wrap:break-word;
+margin-right:20px;
 }
-
 /* MENSAJE BOT */
 
 .msg-bot{
@@ -148,6 +147,5 @@ color:white;
 padding:10px 15px;
 border-radius:12px;
 max-width:450px;
-margin-left:60px;
-word-wrap:break-word;
+margin-left:20px;
 }
