@@ -54,9 +54,7 @@ pregunta: pregunta
 
 let data = await response.json();
 
-/* ANIMACION TEXTO */
-
-escribirTexto(data.respuesta, bubble);
+bubble.innerText = data.respuesta;
 
 }catch(error){
 
@@ -65,55 +63,6 @@ bubble.innerText = "Error al conectar con el asistente.";
 }
 
 chat.scrollTop = chat.scrollHeight;
-
-/* GUARDAR HISTORIAL */
-
-guardarHistorial();
-
-}
-
-
-/* ANIMACION LETRA POR LETRA */
-
-function escribirTexto(texto, elemento){
-
-elemento.innerText = "";
-
-let i = 0;
-
-let intervalo = setInterval(()=>{
-
-elemento.innerText += texto.charAt(i);
-
-i++;
-
-if(i >= texto.length){
-clearInterval(intervalo);
-}
-
-},20);
-
-}
-
-
-/* GUARDAR HISTORIAL */
-
-function guardarHistorial(){
-
-let chat = document.getElementById("chatMensajes").innerHTML;
-
-localStorage.setItem("chatHistorial", chat);
-
-}
-
-
-/* NUEVO CHAT */
-
-function nuevoChat(){
-
-localStorage.removeItem("chatHistorial");
-
-document.getElementById("chatMensajes").innerHTML = "";
 
 }
 
