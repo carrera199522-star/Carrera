@@ -66,7 +66,7 @@ let bubble = bot.querySelector(".bubble");
 
 try{
 
-let response = await fetch("https://chatbot-hu7nkokaq-uc.a.run.app",{
+let response = await fetch("https://us-central1-chatbot-castilla.cloudfunctions.net/chatbot",{
 method:"POST",
 headers:{
 "Content-Type":"application/json"
