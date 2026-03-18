@@ -122,8 +122,9 @@ height:24px;
 .chat-mensajes{
 display:flex;
 flex-direction:column;
-padding:20px;
-height:100%;
+padding:30px;
+max-width:900px;
+margin:auto;
 }
 /* MENSAJE USUARIO */
 
