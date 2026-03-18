@@ -7,7 +7,7 @@ if(pregunta === "") return;
 
 let chat = document.getElementById("chatMensajes");
 
-/* MENSAJE USUARIO */
+/* mensaje usuario */
 
 let user = document.createElement("div");
 user.className = "msg-user";
@@ -17,21 +17,13 @@ chat.appendChild(user);
 
 input.value = "";
 
-/* MENSAJE BOT */
+/* mensaje bot */
 
 let bot = document.createElement("div");
 bot.className = "msg-bot";
-
-bot.innerHTML = `
-<div class="avatar">
-<img src="img/bots.png">
-</div>
-<div class="bubble">...</div>
-`;
+bot.innerText = "...";
 
 chat.appendChild(bot);
-
-let bubble = bot.querySelector(".bubble");
 
 try{
 
@@ -47,11 +39,11 @@ pregunta: pregunta
 
 let data = await response.json();
 
-bubble.innerText = data.respuesta;
+bot.innerText = data.respuesta;
 
 }catch(error){
 
-bubble.innerText = "Error al conectar con el asistente.";
+bot.innerText = "Error al conectar con el asistente.";
 
 }
 
@@ -59,13 +51,11 @@ chat.scrollTop = chat.scrollHeight;
 
 }
 
-/* ENTER PARA ENVIAR */
-
-document.addEventListener("DOMContentLoaded", function(){
+document.addEventListener("DOMContentLoaded",function(){
 
 let input = document.getElementById("pregunta");
 
-input.addEventListener("keypress", function(e){
+input.addEventListener("keypress",function(e){
 
 if(e.key === "Enter"){
 enviar();
