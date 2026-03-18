@@ -47,6 +47,7 @@ flex:1;
 display:flex;
 flex-direction:column;
 background:#343541;
+justify-content:space-between;
 }
 
 /* HEADER */
