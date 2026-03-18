@@ -51,6 +51,8 @@ chat.scrollTop = chat.scrollHeight;
 
 }
 
+/* ENTER para enviar */
+
 document.addEventListener("DOMContentLoaded",function(){
 
 let input = document.getElementById("pregunta");
