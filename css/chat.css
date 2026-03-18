@@ -163,19 +163,18 @@ height:24px;
 display:flex;
 flex-direction:column;
 padding:20px;
+width:100%;
 }
-
 /* MENSAJE USUARIO */
 
 .msg-user{
 background:#22c55e;
 color:white;
 padding:10px 15px;
-border-radius:15px;
+border-radius:12px;
 max-width:60%;
 margin:5px 0;
-align-self:flex-end;
-text-align:right;
+margin-left:auto;
 }
 
 /* MENSAJE BOT */
@@ -184,8 +183,8 @@ text-align:right;
 background:#4b5563;
 color:white;
 padding:10px 15px;
-border-radius:15px;
+border-radius:12px;
 max-width:60%;
 margin:5px 0;
-align-self:flex-start;
+margin-right:auto;
 }
