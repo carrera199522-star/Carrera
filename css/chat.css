@@ -48,8 +48,8 @@ flex:1;
 display:flex;
 flex-direction:column;
 background:#343541;
+justify-content:flex-start;
 }
-
 /* HEADER */
 
 .chat-header{
@@ -125,7 +125,8 @@ height:24px;
 display:flex;
 flex-direction:column;
 padding:30px;
-width:100%;
+gap:10px;
+overflow-y:auto;
 }
 
 /* MENSAJE USUARIO */
