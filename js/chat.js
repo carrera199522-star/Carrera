@@ -39,7 +39,7 @@ pregunta: pregunta
 
 let data = await response.json();
 
-bot.innerText = data.respuesta;
+bot.innerHTML = data.respuesta.replace(/\n/g,"<br>");
 
 }catch(error){
 
