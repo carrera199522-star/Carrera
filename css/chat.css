@@ -133,19 +133,21 @@ background:#22c55e;
 color:white;
 padding:10px 15px;
 border-radius:12px;
-max-width:400px;
+max-width:450px;
 margin-left:auto;
-margin-right:20px;
+margin-right:40px;
+word-wrap:break-word;
 }
 
 /* MENSAJE BOT */
 
-.msg-bot{
-background:#3f4552;
+.msg-user{
+background:#22c55e;
 color:white;
 padding:10px 15px;
 border-radius:12px;
-max-width:400px;
-margin:5px 0;
-margin-right:auto;
+max-width:450px;
+margin-left:auto;
+margin-right:40px;
+word-wrap:break-word;
 }
