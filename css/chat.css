@@ -74,19 +74,27 @@ gap:20px;
 
 .msg-user{
 align-self:flex-end;
-background:#19c37d;
+background:#19c37d; /* verde */
 color:white;
 padding:10px 15px;
-border-radius:10px;
+border-radius:12px;
 max-width:60%;
+margin:10px 0;
 }
+
+
+
 
 /* MENSAJE BOT */
 
 .msg-bot{
-display:flex;
-gap:10px;
-align-items:flex-start;
+align-self:flex-start;
+background:#444654; /* gris oscuro */
+color:white;
+padding:10px 15px;
+border-radius:12px;
+max-width:60%;
+margin:10px 0;
 }
 
 .avatar{
