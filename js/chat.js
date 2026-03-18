@@ -1,12 +1,36 @@
 // ENVIAR MENSAJE
 async function enviar(){
 
-let input = document.getElementById("pregunta");
-let pregunta = input.value.trim();
-
-if(pregunta === "") return;
-
+let pregunta = document.getElementById("pregunta").value;
 let chat = document.getElementById("chatMensajes");
+
+chat.innerHTML += `<div class="msg-user">${pregunta}</div>`;
+
+try{
+
+let response = await fetch("https://chatbot-hu7nkokaq-uc.a.run.app",{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify({
+pregunta: pregunta
+})
+});
+
+let data = await response.json();
+
+chat.innerHTML += `<div class="msg-bot">${data.respuesta}</div>`;
+
+}catch(error){
+
+chat.innerHTML += `<div class="msg-bot">Error al conectar con el asistente.</div>`;
+
+}
+
+document.getElementById("pregunta").value="";
+
+}
 
 /* MENSAJE USUARIO */
 
