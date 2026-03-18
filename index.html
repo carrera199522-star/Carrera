@@ -68,8 +68,10 @@
 <a href="salida_jabas.html">Salida de Jabas</a>
 <a href="salida_jabas.html">Total de Jabas</a>
 </div>
-
 </div>
+
+<!-- ASISTENTE PERSONAL -->
+<a href="asistente.html">AP</a>
 
 
 <!-- GRAFICOS -->
@@ -230,136 +232,17 @@ Ver Kg
 </div>
 </footer>
 
-
-<!-- BOTON FLOTANTE -->
-<div id="botChat" onclick="abrirChat()">💬</div>
-
-<!-- VENTANA CHAT -->
-<div id="chatVentana">
-
-<div id="chatHeader">
-Asistente Virtual
-<span onclick="cerrarChat()" style="float:right;cursor:pointer">✖</span>
-</div>
-
-<div id="chatMensajes"></div>
-
-<div id="chatInput">
-<input id="pregunta" placeholder="Escribe tu pregunta...">
-<button onclick="preguntarAI()">Enviar</button>
-</div>
-
-</div>
-
-<style>
-
-#botChat{
-position:fixed;
-bottom:20px;
-right:20px;
-background:#007bff;
-color:white;
-font-size:25px;
-width:60px;
-height:60px;
-border-radius:50%;
-display:flex;
-align-items:center;
-justify-content:center;
-cursor:pointer;
-box-shadow:0 5px 15px rgba(0,0,0,0.3);
-}
-
-#chatVentana{
-position:fixed;
-bottom:90px;
-right:20px;
-width:300px;
-height:400px;
-background:white;
-border-radius:10px;
-box-shadow:0 10px 25px rgba(0,0,0,0.3);
-display:none;
-flex-direction:column;
-overflow:hidden;
-}
-
-#chatHeader{
-background:#007bff;
-color:white;
-padding:10px;
-font-weight:bold;
-}
-
-#chatMensajes{
-flex:1;
-padding:10px;
-overflow-y:auto;
-font-size:14px;
-}
-
-#chatInput{
-display:flex;
-border-top:1px solid #ddd;
-}
-
-#chatInput input{
-flex:1;
-border:none;
-padding:10px;
-}
-
-#chatInput button{
-background:#007bff;
-color:white;
-border:none;
-padding:10px;
-cursor:pointer;
-}
-
-</style>
-
-<script>
-
-function abrirChat(){
-document.getElementById("chatVentana").style.display="flex";
-}
-
-function cerrarChat(){
-document.getElementById("chatVentana").style.display="none";
-}
-
-async function preguntarAI(){
-
-let pregunta = document.getElementById("pregunta").value;
-let chat = document.getElementById("chatMensajes");
-
-chat.innerHTML += "<div><b>Tú:</b> "+pregunta+"</div>";
-
-let response = await fetch("https://us-central1-chatbot-castilla.cloudfunctions.net/chatbot",{
-method:"POST",
-mode:"cors",
-headers:{
-"Content-Type":"application/json"
-},
-body:JSON.stringify({
-pregunta: pregunta
-})
-});
-
-let data = await response.json();
-
-chat.innerHTML += "<div><b>Bot:</b> "+data.respuesta+"</div>";
-
-document.getElementById("pregunta").value="";
-chat.scrollTop=chat.scrollHeight;
-
-}
-
 </script>
-
+  <script src="js/script.js"></script>
 </body>
 </html>
+
+
+
+
+
+
+
 
 
 
