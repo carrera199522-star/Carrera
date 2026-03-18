@@ -1,36 +1,12 @@
 // ENVIAR MENSAJE
 async function enviar(){
 
-let pregunta = document.getElementById("pregunta").value;
+let input = document.getElementById("pregunta");
+let pregunta = input.value.trim();
+
+if(pregunta === "") return;
+
 let chat = document.getElementById("chatMensajes");
-
-chat.innerHTML += `<div class="msg-user">${pregunta}</div>`;
-
-try{
-
-let response = await fetch("https://us-central1-chatbot-castilla.cloudfunctions.net/chatbot",{
-method:"POST",
-headers:{
-"Content-Type":"application/json"
-},
-body:JSON.stringify({
-pregunta: pregunta
-})
-});
-
-let data = await response.json();
-
-chat.innerHTML += `<div class="msg-bot">${data.respuesta}</div>`;
-
-}catch(error){
-
-chat.innerHTML += `<div class="msg-bot">Error al conectar con el asistente.</div>`;
-
-}
-
-document.getElementById("pregunta").value="";
-
-}
 
 /* MENSAJE USUARIO */
 
@@ -66,12 +42,12 @@ let bubble = bot.querySelector(".bubble");
 
 try{
 
-let response = await fetch("https://us-central1-chatbot-castilla.cloudfunctions.net/chatbot", {
-method: "POST",
-headers: {
-"Content-Type": "application/json"
+let response = await fetch("https://us-central1-chatbot-castilla.cloudfunctions.net/chatbot",{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
 },
-body: JSON.stringify({
+body:JSON.stringify({
 pregunta: pregunta
 })
 });
@@ -89,7 +65,6 @@ bubble.innerText = "Error al conectar con el asistente.";
 }
 
 chat.scrollTop = chat.scrollHeight;
-
 
 /* GUARDAR HISTORIAL */
 
@@ -130,11 +105,6 @@ let chat = document.getElementById("chatMensajes").innerHTML;
 localStorage.setItem("chatHistorial", chat);
 
 }
-
-
-/* CARGAR HISTORIAL */
-
-
 
 
 /* NUEVO CHAT */
