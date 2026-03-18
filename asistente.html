@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+<meta charset="UTF-8">
+<title>Asistente Personal</title>
+
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/chat.css">
+
+</head>
+
+<body>
+
+<header class="main-header">
+
+<div class="logo">
+<img src="img/logo.png">
+
+<div>
+<h2>Procesadora Laran</h2>
+<p>Carrera C.</p>
+</div>
+</div>
+
+<nav class="menu">
+
+<div class="dropdown">
+<a href="#">MP ▾</a>
+<div class="dropdown-content">
+<a href="index_citrico.html">Mandarina</a>
+<a href="index_mp.html">Palta</a>
+<a href="#">Limón</a>
+</div>
+</div>
+
+<div class="dropdown">
+<a href="#">Maquila ▾</a>
+<div class="dropdown-content">
+<a href="#">PDC</a>
+<a href="#">Sunfruits</a>
+<a href="#">Cañete</a>
+</div>
+</div>
+
+<div class="dropdown">
+<a href="#">Jabas ▾</a>
+<div class="dropdown-content">
+<a href="ingreso_jabas.html">Ingreso de Jabas</a>
+<a href="salida_jabas.html">Salida de Jabas</a>
+<a href="salida_jabas.html">Total de Jabas</a>
+</div>
+</div>
+
+<a href="index.html">Inicio</a>
+
+</nav>
+
+</header>
+
+
+<div class="chat-app">
+
+<!-- SIDEBAR -->
+
+<div class="sidebar">
+
+<div class="nuevo-chat-btn" onclick="nuevoChat()">
+➕ Nuevo chat
+</div>
+
+<div id="listaChats" class="lista-chats"></div>
+
+</div>
+
+
+<!-- CHAT -->
+
+<div class="chat-area">
+
+<div class="chat-header">
+🤖 Asistente Personal
+</div>
+
+<div id="chatMensajes" class="chat-mensajes"></div>
+
+<div class="chat-input">
+
+<input id="pregunta" placeholder="Escribe tu pregunta...">
+
+<button onclick="enviar()">Enviar</button>
+
+</div>
+</div>
+
+
+
+
+</div>
+
+
+<script src="js/chat.js"></script>
+
+</body>
+
+</html>
