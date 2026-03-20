@@ -89,16 +89,6 @@ gap:10px;
 align-items:flex-start;
 }
 
-.avatar{
-width:10px;
-height:10px;
-border-radius:50%;
-background:#19c37d;
-display:flex;
-align-items:center;
-justify-content:center;
-}
-
 .bubble{
 background:#444654;
 color:white;
