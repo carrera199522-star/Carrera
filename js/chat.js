@@ -1,3 +1,4 @@
+// ENVIAR MENSAJE
 async function enviar(){
 
 let input = document.getElementById("pregunta");
@@ -7,7 +8,7 @@ if(pregunta === "") return;
 
 let chat = document.getElementById("chatMensajes");
 
-/* mensaje usuario */
+/* MENSAJE USUARIO */
 
 let user = document.createElement("div");
 user.className = "msg-user";
@@ -17,13 +18,27 @@ chat.appendChild(user);
 
 input.value = "";
 
-/* mensaje bot */
+chat.scrollTop = chat.scrollHeight;
+
+
+/* MENSAJE BOT */
 
 let bot = document.createElement("div");
-bot.className = "msg-bot";
-bot.innerText = "...";
+bot.className="msg-bot";
+
+bot.innerHTML=`
+<div class="avatar">
+<img src="img/bots.png">
+</div>
+<div class="bubble">...</div>
+`;
 
 chat.appendChild(bot);
+
+let bubble = bot.querySelector(".bubble");
+
+
+/* LLAMAR API */
 
 try{
 
@@ -39,19 +54,77 @@ pregunta: pregunta
 
 let data = await response.json();
 
-bot.innerHTML = data.respuesta.replace(/\n/g,"<br>");
+/* ANIMACION TEXTO */
 
+escribirTexto(data.respuesta, bubble);
+hablar(data.respuesta);
 }catch(error){
 
-bot.innerText = "Error al conectar con el asistente.";
+bubble.innerText = "Error al conectar con el asistente.";
 
 }
 
 chat.scrollTop = chat.scrollHeight;
 
+
+/* GUARDAR HISTORIAL */
+
+guardarHistorial();
+
 }
 
-/* ENTER para enviar */
+
+/* ANIMACION LETRA POR LETRA */
+
+function escribirTexto(texto, elemento){
+
+elemento.innerText = "";
+
+let i = 0;
+
+let intervalo = setInterval(()=>{
+
+elemento.innerText += texto.charAt(i);
+
+i++;
+
+if(i >= texto.length){
+clearInterval(intervalo);
+}
+
+},20);
+
+}
+
+
+/* GUARDAR HISTORIAL */
+
+function guardarHistorial(){
+
+let chat = document.getElementById("chatMensajes").innerHTML;
+
+localStorage.setItem("chatHistorial", chat);
+
+}
+
+
+/* CARGAR HISTORIAL */
+
+
+
+
+/* NUEVO CHAT */
+
+function nuevoChat(){
+
+localStorage.removeItem("chatHistorial");
+
+document.getElementById("chatMensajes").innerHTML = "";
+
+}
+
+
+/* ENTER PARA ENVIAR */
 
 document.addEventListener("DOMContentLoaded",function(){
 
@@ -66,3 +139,15 @@ enviar();
 });
 
 });
+
+function hablar(texto){
+
+const voz = new SpeechSynthesisUtterance(texto);
+
+voz.lang = "es-ES";
+voz.rate = 1;
+voz.pitch = 1;
+
+speechSynthesis.speak(voz);
+
+}
