@@ -127,14 +127,14 @@ cursor:pointer;
 }
 
 .avatar{
-width:10px;
-height:10px;
+width:32px;
+height:32px;
 display:flex;
 align-items:center;
 justify-content:center;
 background:transparent; /* sin fondo */
 }
 .avatar img{
-width:10px;
-height:10px;
+width:32px;
+height:32px;
 }
